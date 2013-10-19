@@ -1,0 +1,31 @@
+@(index_text: String, welcom_texte: String)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Fred CECILIA - NAIKY</title>
+        <link href="@routes.Assets.at("stylesheets/bootstrap-theme.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/bootstrap.min.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet">
+        <script src="@routes.Assets.at("javascripts/jquery-1.10.2.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.js")"></script>
+
+    </head>
+    <body>
+
+        @Html(index_text)
+
+
+        @if(welcom_texte.length > 0) {
+            <div class="row welcome">
+                <div class="col-md-12">
+                    <p class="editable_textarea text_welcome" id="paragraph_1">
+
+                    @Html(welcom_texte)
+                    </p>
+                </div>
+            </div>
+        }
+    </body>
+</html>

@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET           /                             controllers.Application.index
+# Heroku favicon
+GET           /favicon.ico                  controllers.Assets.at(path="/public", file="images/favicon.ico")
+
+#App
+GET           /admin                        controllers.Application.admin
+POST          /admin/index                  controllers.Application.saveIndexText
+POST          /admin/welcome                controllers.Application.saveWelcomeText
+POST          /admin/login                  controllers.Application.saveLogin
+POST          /admin/password               controllers.Application.savePassword
+POST          /admin/new/redirection        controllers.Application.newRedirection
+POST          /admin/redirection            controllers.Application.saveRedirection
+DELETE        /admin/redirection/:id        controllers.Application.deleteRedirection(id:String)
+GET           /admin/login                  controllers.Auth.login
+GET           /admin/logout                 controllers.Auth.logout
+POST          /admin/authenticate           controllers.Auth.authenticate
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                 controllers.Assets.at(path="/public", file)
+#Redirection
+GET           /:path                        controllers.Application.redirect(path:String)

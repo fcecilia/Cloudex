@@ -1,0 +1,86 @@
+@(redirections: List[Redirection], conf: Configuration)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>Fred CECILIA - NAIKY</title>
+        <link href="@routes.Assets.at("stylesheets/bootstrap-theme.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/bootstrap.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet">
+        <script src="@routes.Assets.at("javascripts/jquery-1.10.2.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.js")"></script>
+
+        <script type="text/javascript" language="javascript" src="@routes.Assets.at("javascripts/jquery.jeditable.js")"></script>
+        <script type="text/javascript" language="javascript" src="@routes.Assets.at("javascripts/admin.js")"></script>
+
+    </head>
+    <header class="navbar navbar-default" role="navigation">
+        <div class="navbar-right">
+            <span class="icon-bar"><a href="@routes.Auth.logout()">Logout</a></span>
+        </div>
+
+    </header>
+    <body>
+        <div class="row account">
+            <div class="col-md-12">
+                <h1>Acount</h1>
+                <p class="editLogin">@conf.login</p>
+                <p class="editPassword">@conf.password</p>
+            </div>
+            <hr>
+        </div>
+
+        <div class="row welcome">
+            <div class="col-md-12">
+                <h1>index Texte</h1>
+                <div class="index_text" >@Html(conf.index_text)</div>
+            </div>
+            <br> <hr>
+        </div>
+        <div class="row welcome">
+            <div class="col-md-12">
+                <h1>Welcome Texte</h1>
+                <div class="welcome_text" >@Html(conf.welcome_text)</div>
+            </div>
+        </div>
+
+
+
+        <div class="row admin">
+            <h1>Redirections</h1>
+            <div class="col-md-12">
+
+                <table id="table" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Path</th>
+                            <th>URL</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(r <- redirections) {
+                        <tr id="@r.key.get">
+                            <td id="path_@r.key.get" class="edit">@r.path</td>
+                            <td id="edit_@r.key.get" class="edit">@r.url</td>
+                            <td>
+                                <button type="button" class="btn removeRow">-</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn addRow">+</button>
+            </div>
+        </div>
+
+    </body>
+
+    <script>
+
+
+</script>
+</html>
