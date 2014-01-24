@@ -15,6 +15,7 @@ import reactivemongo.api.collections.default.BSONCollection
 import reactivemongo.api.collections.default.BSONCollection
 import play.api.mvc.SimpleResult
 import scala.concurrent.Await
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * Created with IntelliJ IDEA.

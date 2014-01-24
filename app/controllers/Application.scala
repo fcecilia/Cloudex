@@ -7,7 +7,7 @@ import models.{Configuration, Redirection}
 import reactivemongo.bson.{BSONObjectID, BSONString, BSONDocument}
 import scala.concurrent.future
 import play.api.libs.json.Json
-
+import scala.concurrent.ExecutionContext.Implicits.global
 object Application extends Controller with MongoController with Secured {
 
 
@@ -109,10 +109,8 @@ object Application extends Controller with MongoController with Secured {
 
         implicit val collection = db[BSONCollection](Redirection.collectionName)
         val elements_id = request.body.asFormUrlEncoded.get("id")(0)
-        val value = request.body.asFormUrlEncoded.get("value")(0)
+        val valueSub = request.body.asFormUrlEncoded.get("value")(0)
 
-
-        println(value)
 
 
         if (elements_id.contains("path_")) {
@@ -120,17 +118,20 @@ object Application extends Controller with MongoController with Secured {
 
           val modifier = BSONDocument(
             "$set" -> BSONDocument(
-              "path" -> BSONString(value)))
+              "path" -> BSONString(valueSub)))
 
           val result = collection.update(BSONDocument("_id" -> BSONObjectID(id)), modifier)
           result.map {
             res => res.inError match {
               case true => BadRequest(res.stringify)
-              case false => Ok(value)
+              case false => Ok(valueSub)
 
             }
           }
         } else if (elements_id.contains("edit_")) {
+          val value = if(valueSub.contains("://")) valueSub else "http://"+valueSub
+          println(value)
+
           val id = elements_id.replace("edit_", "")
 
           val modifier = BSONDocument(
