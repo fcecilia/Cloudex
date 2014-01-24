@@ -6,7 +6,7 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.10.0-SNAPSHOT")
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.10.0")
 
 
 resolvers += "Sonatype Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
